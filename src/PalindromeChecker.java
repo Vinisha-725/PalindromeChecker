@@ -1,35 +1,35 @@
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-public class UseCase5PalindromeCheckerApp {
-    public static boolean isPalindromeUsingStack(String str) {
-        Stack<Character> stack = new Stack();
-        str = str.toLowerCase().replaceAll("[^a-z0-9]", "");
+public class PalindromeChecker
+{public static void main(String[] args)
+{
+    uc7_DequeMethod();
+}
+    public static void uc7_DequeMethod() {
 
-        for (int i = 0; i < str.length(); ++i) {
-            stack.push(str.charAt(i));
+        String input = "refer";
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Insert characters into deque
+        for (char c : input.toCharArray()) {
+            deque.add(c);
         }
 
-        for (int i = 0; i < str.length(); ++i) {
-            if (str.charAt(i) != (Character) stack.pop()) {
-                return false;
+        boolean isPalindrome = true;
+
+        // Compare front and rear
+        while (deque.size() > 1) {
+
+            if (!deque.removeFirst().equals(deque.removeLast())) {
+                isPalindrome = false;
+                break;
             }
         }
 
-        return true;
-    }
-
-    public static void main(String []args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
-        boolean result = false;
-        result = isPalindromeUsingStack(input);
-        if (result) {
-            System.out.println("Result: The string IS a palindrome.");
-        } else {
-            System.out.println("Result: The string is NOT a palindrome.");
-        }
-    }
-
-}
+        System.out.println("UC7: Deque-Based Optimized Palindrome Checker");
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println();
+    }}
